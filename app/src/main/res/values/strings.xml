@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Algorism</string>
+    <string name="title_activity_maps">Home</string>
+    <string name="default_info_title">Default Location</string>
+    <string name="user_info_title">Your Location</string>
+    <string name="default_info_snippet">This is because your location wasn\'t found</string>
+</resources>
