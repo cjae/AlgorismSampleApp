@@ -1,5 +1,6 @@
 package com.spotpin.algorismsampleapp.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -7,6 +8,8 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;
@@ -55,5 +58,25 @@ public class CommonUtils {
 
     public static LatLng covertLocation(Location location) {
         return new LatLng(location.getLatitude(), location.getLongitude());
+    }
+
+    /**
+     * GoogleApiAvailability is the Helper class for verifying that the Google Play services APK is available
+     * and up-to-date on android device. If result is ConnectionResult.SUCCESS then connection was successful
+     * otherwise, we will return false.
+     * @param activity
+     * @return
+     */
+    public static boolean CheckGooglePlayServices(Activity activity) {
+        GoogleApiAvailability googleAPI = GoogleApiAvailability.getInstance();
+        int result = googleAPI.isGooglePlayServicesAvailable(activity);
+        if(result != ConnectionResult.SUCCESS) {
+            if(googleAPI.isUserResolvableError(result)) {
+                googleAPI.getErrorDialog(activity, result,
+                        0).show();
+            }
+            return false;
+        }
+        return true;
     }
 }
