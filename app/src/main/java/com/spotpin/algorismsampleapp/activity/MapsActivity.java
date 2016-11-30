@@ -254,14 +254,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         if (mLocationPermissionGranted) {
-            LatLng mLatLng = CommonUtils.covertLocation(mCurrentLocation);
 
-            mMap.clear(); // Clear so as to avoid showing multiple markers on same location
+            if(mCurrentLocation != null){
+                LatLng mLatLng = CommonUtils.covertLocation(mCurrentLocation);
 
-            mMap.addMarker(new MarkerOptions()
-                    .position(mLatLng)
-                    .title(getString(R.string.user_info_title))
-                    .snippet(CommonUtils.getAddressFromLatLng(mLatLng, getApplicationContext())));
+                mMap.clear(); // Clear so as to avoid showing multiple markers on same location
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(mLatLng)
+                        .title(getString(R.string.user_info_title))
+                        .snippet(CommonUtils.getAddressFromLatLng(mLatLng, getApplicationContext())));
+            } else {
+                Toast.makeText(this, "Couldn't get your location", Toast.LENGTH_SHORT).show();
+            }
 
             // Get the businesses and other points of interest located
             // nearest to the device's current location.
