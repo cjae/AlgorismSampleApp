@@ -3,4 +3,4 @@ An application that shows a map and the current location of the user. The locati
 
 ## Requirements: 
 * Android Studio 2.2
-* Android sdk version 20 and above
+* Android sdk version 15 and above
