@@ -65,7 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
 
         if(!CommonUtils.CheckGooglePlayServices(this))
-            return;
+            finish();
 
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
